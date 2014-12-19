@@ -7,17 +7,31 @@ var method_prefix = "spin_";
 
 
 $(document).ready(function() {
-		spinKIT('fading_circle','Loading...');
+		spinKIT('wave','');
 });
 
 /** main function to call sping loading **/
 function spinKIT(style,message)
 {
 	$overlay = $('<div>', { id:'spin-kit-loading' ,class:'spin-overlay'} );
-	$overlay.append(
-		$('<div>', {class:'spin-wrap'} )
+	
+	var $loadingWrap;	
+
+	if( message == '')
+	{
+		$loadingWrap = $('<div>', {class:'spin-wrap'} )
+		.append(
+			$('<div>', {class:'spin-black-wrap'} )
+			.append( window[method_prefix + style ]())
+		);
+	}
+	else{
+		$loadingWrap = $('<div>', {class:'spin-wrap'} )
 		.append('<p>'+message+'</p>')
-		.append( window[method_prefix + style ]()));
+		.append( window[method_prefix + style ]());
+	}
+
+	$overlay.append( $loadingWrap );
 
 	/** adding overlay and loading **/
 	$('body').append($overlay);
