@@ -8,6 +8,7 @@ var method_prefix = "spin_";
 
 $(document).ready(function() {
 		spinKIT('wave','');
+		spinKITremove();
 });
 
 /** main function to call sping loading **/
@@ -35,6 +36,11 @@ function spinKIT(style,message)
 
 	/** adding overlay and loading **/
 	$('body').append($overlay);
+}
+
+function spinKITremove()
+{
+	$('#spin-kit-loading').remove();
 }
 
 
